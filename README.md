@@ -20,35 +20,17 @@ As of now, the code only contains the detection module, but you should expect th
 1. Python 3.5
 2. OpenCV
 3. PyTorch 0.4
-
+4. Tensorflow
+... see the Req. Document
 Using PyTorch 0.3 will break the detector.
 
 
 
-## Detection Example
+## Detection Example + Calculating DISTANCE
 
-![Detection Example](https://i.imgur.com/m2jwneng.png)
-## Running the detector
-
-### On single or multiple images
-
-Clone, and `cd` into the repo directory. The first thing you need to do is to get the weights file
-This time around, for v3, authors has supplied a weightsfile only for COCO [here](https://pjreddie.com/media/files/yolov3.weights), and place 
-
-the weights file into your repo directory. Or, you could just type (if you're on Linux)
-
-```
-wget https://pjreddie.com/media/files/yolov3.weights 
-python detect.py --images imgs --det det 
-```
+![Detection Example](https://i.imgur.com/ros7bw3.jpg)
 
 
-`--images` flag defines the directory to load images from, or a single image file (it will figure it out), and `--det` is the directory
-to save images to. Other setting such as batch size (using `--bs` flag) , object threshold confidence can be tweaked with flags that can be looked up with. 
-
-```
-python detect.py -h
-```
 
 ### Speed Accuracy Tradeoff
 You can change the resolutions of the input image by the `--reso` flag. The default value is 416. Whatever value you chose, rememeber **it should be a multiple of 32 and greater than 32**. Weird things will happen if you don't. You've been warned. 
@@ -67,27 +49,16 @@ python video_demo.py --video video.avi
 
 Tweakable settings can be seen with -h flag. 
 
-### Speeding up Video Inference
 
-To speed video inference, you can try using the video_demo_half.py file instead which does all the inference with 16-bit half 
-precision floats instead of 32-bit float. I haven't seen big improvements, but I attribute that to having an older card 
-(Tesla K80, Kepler arch). If you have one of cards with fast float16 support, try it out, and if possible, benchmark it. 
-
-### On a Camera
+### Get Started
 Same as video module, but you don't have to specify the video file since feed will be taken from your camera. To be precise, 
 feed will be taken from what the OpenCV, recognises as camera 0. The default image resolution is 160 here, though you can change it with `reso` flag.
 
 ```
-python cam_demo.py
-```
-You can easily tweak the code to use different weightsfiles, available at [yolo website](https://pjreddie.com/darknet/yolo/)
+python main.py
 
-NOTE: The scales features has been disabled for better refactoring.
-### Detection across different scales
-YOLO v3 makes detections across different scales, each of which deputise in detecting objects of different sizes depending upon whether they capture coarse features, fine grained features or something between. You can experiment with these scales by the `--scales` flag. 
+or
 
+python maintest.py --video videotest.mp4
 ```
-python detect.py --scales 1,3
-```
-
 
