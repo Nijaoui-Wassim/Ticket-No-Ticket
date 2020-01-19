@@ -60,7 +60,7 @@ old_distance,temp_Y1,temp_Y2, temp_X1,temp_X2 = 0 , 0 ,0 ,0, 0
 
 
 def write(x, img):
-    global counting
+    global counting, counter
     global temp_Y1,temp_Y2, temp_X1,temp_X2, old_distance
     c1 = tuple(x[1:3].int())
     c2 = tuple(x[3:5].int())
